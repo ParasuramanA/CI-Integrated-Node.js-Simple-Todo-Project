@@ -17,7 +17,7 @@ app.use(morgan("dev"))
 
 app.use("/api/todos",todoRoutes);
 
-sequelize.sync().then(()=>console.log("db running"))
+sequelize.sync().then(()=>console.log("database running"))
 
 
 module.exports = app
