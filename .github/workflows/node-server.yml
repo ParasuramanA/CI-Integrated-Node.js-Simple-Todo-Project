@@ -1,0 +1,32 @@
+name: CI - Node Js
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: src/package-lock.json
+
+      - name: Install Dependencies
+        run: |
+          cd src
+          npm install
+
+      - name: Run Tests
+        run: |
+          cd src
+          npm test
