@@ -20,18 +20,8 @@ jobs:
           node-version: 18
           cache: "npm"
 
-      # ⭐ Fix Windows-corrupted Jest binary
-      - name: Clean & Install Dependencies (Fresh Linux Install)
-        working-directory: src
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
-
-      # (Optional: Debug to confirm Jest has executable permission)
-      - name: Check Jest binary permissions
-        working-directory: src
-        run: ls -l node_modules/.bin | grep jest
+      - name: Install Dependencies
+        run: npm install
 
       - name: Run Tests
-        working-directory: src
-        run: npx jest
+        run: npm test
