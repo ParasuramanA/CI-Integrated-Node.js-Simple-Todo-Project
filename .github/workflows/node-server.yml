@@ -1,8 +1,8 @@
-name: CI - Node Js
+name: CI - Node.js
 
 on:
   push:
-    branches: 
+    branches:
       - main
   pull_request:
     branches:
@@ -14,21 +14,18 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Setup Node
-        uses: actions/setup-node@v3 
+        uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: "npm"
-          cache-dependency-path: src/package-lock.json
+          cache: "npm"   # Auto-detects package-lock.json, no need for path
 
       - name: Install Dependencies
-        run: |
-          cd src
-          npm install
+        working-directory: src
+        run: npm install
 
       - name: Run Tests
-        run: |
-          cd src
-          npm test
+        working-directory: src
+        run: npm test
