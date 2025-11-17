@@ -2,11 +2,9 @@ name: CI - Node.js
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -20,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: "npm"   # Auto-detects package-lock.json, no need for path
+          cache: "npm"
 
       - name: Install Dependencies
         working-directory: src
@@ -28,4 +26,4 @@ jobs:
 
       - name: Run Tests
         working-directory: src
-        run: npm test
+        run: npx jest
